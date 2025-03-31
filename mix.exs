@@ -1,25 +1,25 @@
-defmodule Membrane.Template.Mixfile do
+defmodule Membrane.H26x.Snapshot.Plugin.Mixfile do
   use Mix.Project
 
   @version "0.1.0"
-  @github_url "https://github.com/membraneframework/membrane_template_plugin"
+  @github_url "https://github.com/membraneframework-labs/membrane_h26x_snapshot_plugin.git"
 
   def project do
     [
-      app: :membrane_template_plugin,
+      app: :membrane_h26x_snapshot_plugin,
       version: @version,
-      elixir: "~> 1.13",
+      elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: dialyzer(),
 
       # hex
-      description: "Template Plugin for Membrane Framework",
+      description: "Membrane Plugin to take png snapshot's from H26x video streams",
       package: package(),
 
       # docs
-      name: "Membrane Template plugin",
+      name: "Membrane H26x Snapshot Plugin",
       source_url: @github_url,
       docs: docs(),
       homepage_url: "https://membrane.stream"
@@ -37,7 +37,11 @@ defmodule Membrane.Template.Mixfile do
 
   defp deps do
     [
-      {:membrane_core, "~> 1.0"},
+      {:membrane_core, "~> 1.1"},
+      {:membrane_h264_ffmpeg_plugin, "~> 0.32.5"},
+      {:membrane_h265_ffmpeg_plugin, "~> 0.4.2"},
+      {:membrane_h26x_plugin, "~> 0.10.2"},
+      {:image, "~> 0.56.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, ">= 0.0.0", only: :dev, runtime: false}
@@ -74,7 +78,7 @@ defmodule Membrane.Template.Mixfile do
       extras: ["README.md", "LICENSE"],
       formatters: ["html"],
       source_ref: "v#{@version}",
-      nest_modules_by_prefix: [Membrane.Template]
+      nest_modules_by_prefix: [Membrane.H26x.Snapshot]
     ]
   end
 end
